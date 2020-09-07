@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './StudentList.scss';
+import Student from '../student/Student';
 
 class StudentList extends Component {
   constructor(props) {
@@ -30,9 +31,7 @@ class StudentList extends Component {
         </div>
         <div className="Main">
           {this.state.students?.map((student) => (
-            <div className="student" key={student.id}>
-              {student.id}
-            </div>
+            <Student key={student.id} student_id={student.id} student_name={student.name} />
           ))}
         </div>
       </div>

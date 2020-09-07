@@ -5,7 +5,8 @@
     padding: 0px 10px;
   }
   .Main {
-    .student {
-    }
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
   }
 }
