@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Navigator from '../components/navigator/Navigator';
-import Main from '../components/main/Main';
+import GroupList from '../components/groupList/GroupList';
+import StudentList from '../components/studentList/StudentList';
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigator />
-        <Main />
+        <GroupList />
+        <StudentList />
       </div>
     );
   }

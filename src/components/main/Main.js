@@ -19,6 +19,10 @@ class Navigator extends Component {
     return (
       <div className="Main">
         <div>{this.state.students}</div>
+        <div className="team">
+          <div className="up">Team 1</div>
+          <div className="down">....</div>
+        </div>
       </div>
     );
   }
