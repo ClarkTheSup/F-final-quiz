@@ -7,13 +7,18 @@ class StudentList extends Component {
     this.state = { students: null };
   }
 
-  handleClick = () => {
+  componentDidMount() {
     const url = 'http://localhost:8080/students';
     const params = {
       method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
     };
-    fetch(url, params).then(() => console.log('ok'));
-  };
+    fetch(url, params)
+      .then((res) => res.json())
+      .then((data) => this.setState({ students: data }));
+  }
 
   render() {
     return (
@@ -24,7 +29,11 @@ class StudentList extends Component {
           </div>
         </div>
         <div className="Main">
-          <div className="student">{this.state.students}</div>
+          {this.state.students?.map((student) => (
+            <div className="student" key={student.id}>
+              {student.id}
+            </div>
+          ))}
         </div>
       </div>
     );
