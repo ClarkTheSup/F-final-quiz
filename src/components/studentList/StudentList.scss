@@ -2,11 +2,23 @@
   .Navigator {
     display: flex;
     justify-content: space-between;
-    padding: 0px 10px;
+    padding: 0px 25px;
+    .StudentList-Navigator-Left {
+      font-weight: bold;
+      font-size: 24px;
+    }
   }
   .Main {
     display: flex;
     flex-wrap: wrap;
     padding-left: 15px;
+  }
+  .addStudent {
+    background-color: #eeeeee;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    border: 1px dashed;
+    font-size: 14px;
   }
 }

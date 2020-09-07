@@ -23,20 +23,18 @@ class TeamList extends Component {
       <div className="TeamList">
         <div className="Navigator">
           <div>
-            <span>分组列表</span>
+            <span className="left">分组列表</span>
           </div>
           <div>
-            <button type="button" onClick={this.handleClick}>
+            <button type="button" className="right" onClick={this.handleClick}>
               分组学员
             </button>
           </div>
         </div>
         <div className="Main">
-          <div>
-            {this.state.teams?.map((team, index) => (
-              <Team team={team} team_id={index} />
-            ))}
-          </div>
+          {this.state.teams?.map((team, index) => (
+            <Team team={team} team_id={index} />
+          ))}
         </div>
       </div>
     );

@@ -26,13 +26,18 @@ class StudentList extends Component {
       <div className="StudentList">
         <div className="Navigator">
           <div>
-            <span>学员列表</span>
+            <span className="StudentList-Navigator-Left">学员列表</span>
           </div>
         </div>
         <div className="Main">
           {this.state.students?.map((student) => (
             <Student key={student.id} student_id={student.id} student_name={student.name} />
           ))}
+          <div>
+            <button className="addStudent" type="button" onClick={this.handleClick}>
+              +添加学员
+            </button>
+          </div>
         </div>
       </div>
     );

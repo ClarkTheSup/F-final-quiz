@@ -1,10 +1,22 @@
 .team {
   width: 95%;
   height: 100px;
-  margin: 50px auto;
+  margin: 30px auto;
   border: 1px solid;
   .team-up {
     height: 40%;
     background-color: #929bab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      width: auto;
+      height: 20px;
+    }
+  }
+  .team-down {
+    display: flex;
+    width: 75%;
+    margin: 0px auto;
   }
 }
