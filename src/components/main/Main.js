@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import './Navigator.scss';
+import './Main.scss';
 
 class Navigator extends Component {
-  handleClick = () => {
+  constructor(props) {
+    super(props);
+    this.state = { students: null };
+  }
+
+  componentDidMount() {
     const url = 'http://localhost:8080/students';
     const params = {
       method: 'GET',
     };
-    fetch(url, params).then(() => console.log('ok'));
-  };
+    fetch(url, params).then((res) => this.setState({ students: res.data }));
+  }
 
   render() {
     return (
-      <div className="Navigator">
-        <div>
-          <span>分组列表</span>
-        </div>
-        <div>
-          <button type="button" onClick={this.handleClick}>
-            分组学员
-          </button>
-        </div>
+      <div className="Main">
+        <div>{this.state.students}</div>
       </div>
     );
   }
