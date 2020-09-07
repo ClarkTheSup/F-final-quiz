@@ -5,7 +5,9 @@ import './TeamList.scss';
 class TeamList extends Component {
   constructor(props) {
     super(props);
-    this.state = { teams: null };
+    this.state = {
+      teams: null,
+    };
   }
 
   handleClick = () => {
