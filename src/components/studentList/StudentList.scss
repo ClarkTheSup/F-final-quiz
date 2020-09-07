@@ -14,13 +14,21 @@
     padding-left: 15px;
   }
   .addStudent {
-    padding-top: 20px;
+    padding-top: 17px;
     .site-tag-plus {
       background-color: #eeeeee;
       width: 100px;
       margin: 10px;
       border: 1px dashed;
       font-size: 18px;
+    }
+    span {
+      padding: 7px 10px;
+    }
+    input {
+      width: 100px;
+      height: 25px;
+      margin-left: 5px;
     }
   }
 }

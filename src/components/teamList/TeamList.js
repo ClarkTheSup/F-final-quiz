@@ -10,14 +10,36 @@ class TeamList extends Component {
     };
   }
 
-  handleClick = () => {
+  componentDidMount() {
+    this.getTeamList();
+  }
+
+  getTeamList = () => {
     const url = 'http://localhost:8080/student/teams';
     const params = {
       method: 'GET',
     };
     fetch(url, params)
       .then((res) => res.json())
-      .then((data) => this.setState({ teams: data }));
+      .then((data) => {
+        this.setState({ teams: data });
+      });
+  };
+
+  createTeamList = () => {
+    const url = 'http://localhost:8080/student/teams';
+    const params = {
+      method: 'POST',
+    };
+    fetch(url, params)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ teams: data });
+      });
+  };
+
+  handleClick = () => {
+    this.createTeamList();
   };
 
   render() {
@@ -35,7 +57,7 @@ class TeamList extends Component {
         </div>
         <div className="Main">
           {this.state.teams?.map((team, index) => (
-            <Team team={team} team_id={index} />
+            <Team team={team} team_index={index} getTeamList={this.getTeamList} />
           ))}
         </div>
       </div>

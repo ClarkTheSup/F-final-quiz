@@ -85,7 +85,7 @@ class StudentList extends Component {
             )}
             {!this.state.inputVisible && (
               <Tag className="site-tag-plus" onClick={this.showInput}>
-                添加学员
+                + 添加学员
               </Tag>
             )}
           </div>
