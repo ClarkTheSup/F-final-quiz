@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GroupList from '../components/groupList/GroupList';
+import GroupList from '../components/teamList/TeamList';
 import StudentList from '../components/studentList/StudentList';
 import './App.scss';
 

@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import './GroupList.scss';
+import Team from '../team/Team';
+import './TeamList.scss';
 
-class GroupList extends Component {
+class TeamList extends Component {
   constructor(props) {
     super(props);
-    this.state = { students: null };
+    this.state = { teams: null };
   }
 
   handleClick = () => {
-    const url = 'http://localhost:8080/students';
+    const url = 'http://localhost:8080/student/teams';
     const params = {
       method: 'GET',
     };
-    fetch(url, params).then(() => console.log('ok'));
+    fetch(url, params)
+      .then((res) => res.json())
+      .then((data) => this.setState({ teams: data }));
   };
 
   render() {
     return (
-      <div className="GroupList">
+      <div className="TeamList">
         <div className="Navigator">
           <div>
             <span>分组列表</span>
@@ -29,10 +32,10 @@ class GroupList extends Component {
           </div>
         </div>
         <div className="Main">
-          <div>{this.state.students}</div>
-          <div className="team">
-            <div className="up">Team 1</div>
-            <div className="down">....</div>
+          <div>
+            {this.state.teams?.map((team, index) => (
+              <Team team={team} team_id={index} />
+            ))}
           </div>
         </div>
       </div>
@@ -40,4 +43,4 @@ class GroupList extends Component {
   }
 }
 
-export default GroupList;
+export default TeamList;
