@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import GroupList from '../components/teamList/TeamList';
-import StudentList from '../components/studentList/StudentList';
+import GroupList from '../components/groupList/GroupList';
+import TraineeList from '../components/traineeList/TraineeList';
+import TrainerList from '../components/trainerList/TrainerList';
 import './App.scss';
 
 class App extends Component {
@@ -8,7 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <GroupList />
-        <StudentList />
+        <TrainerList />
+        <TraineeList />
       </div>
     );
   }

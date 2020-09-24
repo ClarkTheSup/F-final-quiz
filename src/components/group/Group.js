@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Tag, Input } from 'antd';
-import Student from '../student/Student';
-import './Team.scss';
+import Trainee from '../trainee/Trainee';
+import './Group.scss';
 
-class Team extends Component {
+class Group extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -63,7 +63,7 @@ class Team extends Component {
         </div>
         <div className="team-down">
           {this.props.team.studentList.map((student) => (
-            <Student key={student.id} student_id={student.id} student_name={student.name} />
+            <Trainee key={student.id} student_id={student.id} student_name={student.name} />
           ))}
         </div>
       </div>
@@ -71,4 +71,4 @@ class Team extends Component {
   }
 }
 
-export default Team;
+export default Group;

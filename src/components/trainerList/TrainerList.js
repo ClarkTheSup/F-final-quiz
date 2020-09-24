@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Tag, Input } from 'antd';
-import './StudentList.scss';
-import Student from '../student/Student';
+import './TrainerList.scss';
+import Trainee from '../trainee/Trainee';
 
-class StudentList extends Component {
+class TrainerList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,10 +54,6 @@ class StudentList extends Component {
     });
   };
 
-  saveInputRef = (input) => {
-    this.input = input;
-  };
-
   render() {
     return (
       <div className="StudentList">
@@ -68,7 +64,7 @@ class StudentList extends Component {
         </div>
         <div className="Main">
           {this.state.students?.map((student) => (
-            <Student key={student.id} student_id={student.id} student_name={student.name} />
+            <Trainee key={student.id} student_id={student.id} student_name={student.name} />
           ))}
           <div className="addStudent">
             {this.state.inputVisible && (
@@ -95,4 +91,4 @@ class StudentList extends Component {
   }
 }
 
-export default StudentList;
+export default TrainerList;
