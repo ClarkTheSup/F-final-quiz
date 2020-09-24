@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Tag, Input } from 'antd';
+import { Tag, Input, Modal } from 'antd';
 import './TrainerList.scss';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import Trainer from './trainer/Trainer';
 
 class TrainerList extends Component {
@@ -55,6 +56,22 @@ class TrainerList extends Component {
     await axios.post(url, trainer);
   };
 
+  deleteTrainer = async (trainerId) => {
+    const url = `http://localhost:8080/trainers/${trainerId}`;
+    await axios.delete(url);
+  };
+
+  showConfirm = (trainerId, deleteTrainer, getUngroupedTrainers) => {
+    Modal.confirm({
+      icon: <ExclamationCircleOutlined />,
+      content: '确认删除吗',
+      async onOk() {
+        await deleteTrainer(trainerId);
+        await getUngroupedTrainers();
+      },
+    });
+  };
+
   render() {
     return (
       <div className="trainer-list">
@@ -63,7 +80,14 @@ class TrainerList extends Component {
         </header>
         <main className="main">
           {this.state.trainers.map((trainer) => (
-            <Trainer key={trainer.id} trainerId={trainer.id} trainerName={trainer.name} />
+            <Trainer
+              key={trainer.id}
+              trainerId={trainer.id}
+              trainerName={trainer.name}
+              showDeleteConfirm={() =>
+                this.showConfirm(trainer.id, this.deleteTrainer, this.getUngroupedTrainers)
+              }
+            />
           ))}
           <div className="trainer-addition">
             {this.state.inputVisible && (
