@@ -4,10 +4,9 @@ import './Trainee.scss';
 class Trainee extends Component {
   render() {
     return (
-      <div className="trainee">
-        <span>
-          {this.props.traineeId}.{this.props.traineeName}
-        </span>
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+      <div className="trainee" onClick={this.props.showDeleteConfirm}>
+        {this.props.traineeId}.{this.props.traineeName}
       </div>
     );
   }
