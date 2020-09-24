@@ -1,20 +1,23 @@
-.team {
+.group {
   width: 95%;
   height: 100px;
-  margin: 30px auto;
   border: 1px solid;
-  .team-up {
-    height: 40%;
+  .header {
     background-color: #929bab;
     display: flex;
     justify-content: center;
     align-items: center;
-    span {
-      width: auto;
-      height: 20px;
-    }
   }
-  .team-down {
+  .group-name {
+    width: 100%;
+    height: 40%;
+    text-align: center;
+  }
+  .trainer-list {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .main {
     display: flex;
     width: 75%;
     margin: 0px auto;

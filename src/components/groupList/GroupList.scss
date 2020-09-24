@@ -1,20 +1,18 @@
-.TeamList {
-  .Navigator {
+.group-list {
+  .header {
     display: flex;
     justify-content: space-between;
     padding: 0px 25px;
-    .left {
+    .header-title {
       font-weight: bold;
       font-size: 24px;
     }
-    .right {
+    .header-group {
       background-color: red;
       color: white;
       width: 120px;
       height: 30px;
       border: none;
     }
-  }
-  .Main {
   }
 }

@@ -1,69 +1,73 @@
 import React, { Component } from 'react';
-import { Tag, Input } from 'antd';
 import Trainee from '../traineeList/trainee/Trainee';
+import Trainer from '../trainerList/trainer/Trainer';
 import './Group.scss';
 
 class Group extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputVisible: false,
-      inputValue: '',
-    };
-  }
-
-  showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
-  };
-
-  handleInputChange = (e) => {
-    this.setState({ inputValue: e.target.value });
-  };
-
-  handleInputConfirm = () => {
-    const { inputValue } = this.state;
-    if (inputValue) {
-      const url = `http://localhost:8080/trainee/teams/${this.props.team_index}/${inputValue}`;
-      const params = {
-        method: 'POST',
-      };
-      fetch(url, params).then(() => this.props.getTeamList());
-    }
-
-    this.setState({
-      inputVisible: false,
-      inputValue: '',
-    });
-  };
-
-  saveInputRef = (input) => {
-    this.input = input;
-  };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     inputVisible: false,
+  //     inputValue: '',
+  //   };
+  // }
+  //
+  // showInput = () => {
+  //   this.setState({ inputVisible: true }, () => this.input.focus());
+  // };
+  //
+  // handleInputChange = (e) => {
+  //   this.setState({ inputValue: e.target.value });
+  // };
+  //
+  // handleInputConfirm = () => {
+  //   const { inputValue } = this.state;
+  //   if (inputValue) {
+  //     const url = `http://localhost:8080/trainee/groups/${this.props.group_index}/${inputValue}`;
+  //     const params = {
+  //       method: 'POST',
+  //     };
+  //     fetch(url, params).then(() => this.props.getgroupList());
+  //   }
+  //
+  //   this.setState({
+  //     inputVisible: false,
+  //     inputValue: '',
+  //   });
+  // };
+  //
+  // saveInputRef = (input) => {
+  //   this.input = input;
+  // };
 
   render() {
-    if (this.props.team.traineeList.length <= 0) {
-      return null;
-    }
+    console.log(this.props.group);
     return (
-      <div className="team">
-        <div className="team-up">
-          {this.state.inputVisible && (
-            <Input
-              ref={this.saveInputRef}
-              type="text"
-              size="small"
-              className="tag-input"
-              value={this.state.inputValue}
-              onChange={this.handleInputChange}
-              onBlur={this.handleInputConfirm}
-              onPressEnter={this.handleInputConfirm}
-            />
-          )}
-          {!this.state.inputVisible && <Tag onClick={this.showInput}>{this.props.team.name}</Tag>}
-        </div>
-        <div className="team-down">
-          {this.props.team.traineeList.map((trainee) => (
-            <Trainee key={trainee.id} trainee_id={trainee.id} trainee_name={trainee.name} />
+      <div className="group">
+        {/* <div className="group-header"> */}
+        {/*  {this.state.inputVisible && ( */}
+        {/*    <Input */}
+        {/*      type="text" */}
+        {/*      className="group-name" */}
+        {/*      value={this.state.inputValue} */}
+        {/*      onChange={this.handleInputChange} */}
+        {/*      onBlur={this.handleInputConfirm} */}
+        {/*      onPressEnter={this.handleInputConfirm} */}
+        {/*    /> */}
+        {/*  )} */}
+        {/*  {!this.state.inputVisible && <Tag onClick={this.showInput}>{this.props.group.name}</Tag>} */}
+        {/* </div> */}
+        <header className="header">
+          <span className="group-name">{this.props.group.name}</span>
+          <div className="trainer-list">
+            {this.props.group.trainerList.map((trainer) => (
+              <Trainer key={trainer.id} trainerId={trainer.id} trainerName={trainer.name} />
+            ))}
+          </div>
+        </header>
+        <div className="main">
+          {this.props.group.traineeList.map((trainee) => (
+            <Trainee key={trainee.id} traineeId={trainee.id} traineeName={trainee.name} />
           ))}
         </div>
       </div>

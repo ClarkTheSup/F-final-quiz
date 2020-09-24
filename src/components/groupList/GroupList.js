@@ -17,27 +17,34 @@ class GroupList extends Component {
 
   getGroups = async () => {
     const url = 'http://localhost:8080/groups';
-    const groups = await axios.get(url);
+    const response = await axios.get(url);
+    const groups = response.data;
     this.setState({ groups });
   };
 
-  createGroups = () => {
-    const url = 'http://localhost:8080/groups';
-    axios.post(url);
+  createGroups = async () => {
+    const url = 'http://localhost:8080/groups/auto-grouping';
+    await axios.post(url);
+  };
+
+  fetchGroups = async () => {
+    await this.createGroups();
+    await this.getGroups();
+    this.props.refreshApp();
   };
 
   render() {
     return (
-      <div className="groups">
+      <div className="group-list">
         <header className="header">
           <span className="header-title">分组列表</span>
-          <button type="button" className="header-group" onClick={this.createGroups}>
+          <button type="button" className="header-group" onClick={this.fetchGroups}>
             分组学员
           </button>
         </header>
-        <main className="Main">
-          {this.state.groups?.map((group, index) => (
-            <Group group={group} index={index} getGroups={this.getGroups} />
+        <main className="main">
+          {this.state.groups.map((group, groupIndex) => (
+            <Group group={group} groupIndex={groupIndex} getGroups={this.getGroups} />
           ))}
         </main>
       </div>
