@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import './TraineeList.scss';
 import axios from 'axios';
@@ -24,14 +23,6 @@ class TraineeList extends Component {
     this.setState({ trainees });
   };
 
-  showTraineeForm = () => {};
-
-  // createTrainee = async (traineeName) => {
-  //   const url = 'http://localhost:8080/trainees';
-  //   const trainee = { name: traineeName };
-  //   await axios.post(url, trainee);
-  // };
-
   render() {
     return (
       <div className="trainee-list">
@@ -42,9 +33,9 @@ class TraineeList extends Component {
           {this.state.trainees.map((trainee) => (
             <Trainee key={trainee.id} traineeId={trainee.id} traineeName={trainee.name} />
           ))}
-          <Tag className="trainee-addition-plus" onClick={this.showTraineeForm}>
-            <Link to="/trainee/form">+ 添加学员</Link>
-          </Tag>
+          <Link to="/trainee/form" className="trainee-addition-plus">
+            + 添加学员
+          </Link>
         </main>
       </div>
     );

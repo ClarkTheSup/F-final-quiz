@@ -1,73 +1,81 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
-
-// const layout = {
-//   labelCol: {
-//     span: 8,
-//   },
-//   wrapperCol: {
-//     span: 16,
-//   },
-// };
-// const tailLayout = {
-//   wrapperCol: {
-//     offset: 8,
-//     span: 16,
-//   },
-// };
+import 'antd/dist/antd.css';
+import { Form, Input, Button } from 'antd';
+import axios from 'axios';
 
 class TraineeForm extends Component {
-  onFinish = (values) => {
-    console.log('Success:', values);
+  onFinish = async (trainee) => {
+    const url = 'http://localhost:8080/trainees';
+    await axios.post(url, trainee);
+    window.alert('提交成功！');
   };
 
-  onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  goBack = () => {
+    window.history.back();
   };
 
   render() {
     return (
-      <Form
-        name="basic"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={this.onFinish}
-        onFinishFailed={this.onFinishFailed}
-      >
+      <Form name="basic" onFinish={this.onFinish}>
         <Form.Item
-          label="Username"
-          name="username"
+          label="姓名"
+          name="name"
           rules={[
             {
               required: true,
-              message: 'Please input your username!',
+              message: '姓名不能为空',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="邮箱"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: '邮箱不能为空',
+            },
+            {
+              type: 'email',
+              message: '邮箱格式不正确',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="办公室"
+          name="office"
+          rules={[
+            {
+              required: true,
+              message: '办公室不能为空',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Zoom Id"
+          name="zoomId"
+          rules={[
+            {
+              required: true,
+              message: 'Zoom Id不能为空',
             },
           ]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            提交
+          </Button>
+          <Button type="primary" onClick={this.goBack}>
+            取消
           </Button>
         </Form.Item>
       </Form>
