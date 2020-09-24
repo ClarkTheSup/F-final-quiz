@@ -1,5 +1,5 @@
-.StudentList {
-  .Navigator {
+.trainer-list {
+  .header {
     display: flex;
     justify-content: space-between;
     padding: 0px 25px;
@@ -8,24 +8,21 @@
       font-size: 24px;
     }
   }
-  .Main {
+  .main {
     display: flex;
     flex-wrap: wrap;
     padding-left: 15px;
   }
-  .addStudent {
+  .trainer-addition {
     padding-top: 17px;
-    .site-tag-plus {
+    .trainer-addition-plus {
       background-color: #eeeeee;
       width: 100px;
       margin: 10px;
       border: 1px dashed;
       font-size: 18px;
     }
-    span {
-      padding: 7px 10px;
-    }
-    input {
+    .trainer-addition-tag {
       width: 100px;
       height: 25px;
       margin-left: 5px;

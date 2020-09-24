@@ -26,15 +26,21 @@ class TrainerList extends Component {
   };
 
   showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
+    this.setState({ inputVisible: true }, () => document.getElementById('trainer-input').focus());
   };
 
   handleInputChange = (event) => {
     this.setState({ inputValue: event.target.value });
   };
 
-  handleInputConfirm = () => {
-    // const { inputValue } = this.state;
+  handleInputConfirm = async () => {
+    const { inputValue } = this.state;
+    if (inputValue === '') {
+      return;
+    }
+
+    await this.createTrainer(inputValue);
+    await this.getUngroupedTrainers();
 
     this.setState({
       inputVisible: false,
@@ -42,10 +48,15 @@ class TrainerList extends Component {
     });
   };
 
+  createTrainer = async (trainerName) => {
+    const url = 'http://localhost:8080/trainers';
+    const trainer = { name: trainerName };
+    await axios.post(url, trainer);
+  };
+
   render() {
-    console.log(this.state.trainers);
     return (
-      <div className="TrainerList">
+      <div className="trainer-list">
         <header className="header">
           <span className="StudentList-Navigator-Left">讲师列表</span>
         </header>
@@ -58,6 +69,7 @@ class TrainerList extends Component {
               <Input
                 type="text"
                 className="trainer-addition-tag"
+                id="trainer-input"
                 value={this.state.inputValue}
                 onChange={this.handleInputChange}
                 onBlur={this.handleInputConfirm}
