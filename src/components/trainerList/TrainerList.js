@@ -35,13 +35,14 @@ class TrainerList extends Component {
 
   handleInputConfirm = async () => {
     const { inputValue } = this.state;
-    if (inputValue === '') {
-      return;
+    if (inputValue !== '') {
+      await this.createTrainer(inputValue);
+      await this.getUngroupedTrainers();
     }
+    this.resetInput();
+  };
 
-    await this.createTrainer(inputValue);
-    await this.getUngroupedTrainers();
-
+  resetInput = () => {
     this.setState({
       inputVisible: false,
       inputValue: '',
@@ -58,7 +59,7 @@ class TrainerList extends Component {
     return (
       <div className="trainer-list">
         <header className="header">
-          <span className="StudentList-Navigator-Left">讲师列表</span>
+          <span className="traineeList-Navigator-Left">讲师列表</span>
         </header>
         <main className="main">
           {this.state.trainers.map((trainer) => (

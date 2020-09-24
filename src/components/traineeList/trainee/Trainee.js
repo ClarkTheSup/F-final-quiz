@@ -4,9 +4,9 @@ import './Trainee.scss';
 class Trainee extends Component {
   render() {
     return (
-      <div className="student">
+      <div className="trainee">
         <span>
-          {this.props.student_id}.{this.props.student_name}
+          {this.props.traineeId}.{this.props.traineeName}
         </span>
       </div>
     );

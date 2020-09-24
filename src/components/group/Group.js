@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tag, Input } from 'antd';
-import Trainee from '../trainee/Trainee';
+import Trainee from '../traineeList/trainee/Trainee';
 import './Group.scss';
 
 class Group extends Component {
@@ -23,7 +23,7 @@ class Group extends Component {
   handleInputConfirm = () => {
     const { inputValue } = this.state;
     if (inputValue) {
-      const url = `http://localhost:8080/student/teams/${this.props.team_index}/${inputValue}`;
+      const url = `http://localhost:8080/trainee/teams/${this.props.team_index}/${inputValue}`;
       const params = {
         method: 'POST',
       };
@@ -41,7 +41,7 @@ class Group extends Component {
   };
 
   render() {
-    if (this.props.team.studentList.length <= 0) {
+    if (this.props.team.traineeList.length <= 0) {
       return null;
     }
     return (
@@ -62,8 +62,8 @@ class Group extends Component {
           {!this.state.inputVisible && <Tag onClick={this.showInput}>{this.props.team.name}</Tag>}
         </div>
         <div className="team-down">
-          {this.props.team.studentList.map((student) => (
-            <Trainee key={student.id} student_id={student.id} student_name={student.name} />
+          {this.props.team.traineeList.map((trainee) => (
+            <Trainee key={trainee.id} trainee_id={trainee.id} trainee_name={trainee.name} />
           ))}
         </div>
       </div>
