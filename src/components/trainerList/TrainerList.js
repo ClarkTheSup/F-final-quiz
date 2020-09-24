@@ -1,52 +1,40 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Tag, Input } from 'antd';
 import './TrainerList.scss';
-import Trainee from '../trainee/Trainee';
+import Trainer from './trainer/Trainer';
 
 class TrainerList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: null,
+      trainers: [],
       inputVisible: false,
       inputValue: '',
     };
   }
 
   componentDidMount() {
-    this.getStudents();
+    this.getUngroupedTrainers();
   }
 
-  getStudents = () => {
-    const url = 'http://localhost:8080/students';
-    const params = {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-      },
-    };
-    fetch(url, params)
-      .then((res) => res.json())
-      .then((data) => this.setState({ students: data }));
+  getUngroupedTrainers = async () => {
+    const url = 'http://localhost:8080/trainers?grouped=false';
+    const response = await axios.get(url);
+    const trainers = await response.data;
+    this.setState({ trainers });
   };
 
   showInput = () => {
     this.setState({ inputVisible: true }, () => this.input.focus());
   };
 
-  handleInputChange = (e) => {
-    this.setState({ inputValue: e.target.value });
+  handleInputChange = (event) => {
+    this.setState({ inputValue: event.target.value });
   };
 
   handleInputConfirm = () => {
-    const { inputValue } = this.state;
-    if (inputValue) {
-      const url = `http://localhost:8080/student/${inputValue}`;
-      const params = {
-        method: 'POST',
-      };
-      fetch(url, params).then(() => this.getStudents());
-    }
+    // const { inputValue } = this.state;
 
     this.setState({
       inputVisible: false,
@@ -55,24 +43,21 @@ class TrainerList extends Component {
   };
 
   render() {
+    console.log(this.state.trainers);
     return (
-      <div className="StudentList">
-        <div className="Navigator">
-          <div>
-            <span className="StudentList-Navigator-Left">学员列表</span>
-          </div>
-        </div>
-        <div className="Main">
-          {this.state.students?.map((student) => (
-            <Trainee key={student.id} student_id={student.id} student_name={student.name} />
+      <div className="TrainerList">
+        <header className="header">
+          <span className="StudentList-Navigator-Left">讲师列表</span>
+        </header>
+        <main className="main">
+          {this.state.trainers.map((trainer) => (
+            <Trainer key={trainer.id} trainerId={trainer.id} trainerName={trainer.name} />
           ))}
-          <div className="addStudent">
+          <div className="trainer-addition">
             {this.state.inputVisible && (
               <Input
-                ref={this.saveInputRef}
                 type="text"
-                size="small"
-                className="tag-input"
+                className="trainer-addition-tag"
                 value={this.state.inputValue}
                 onChange={this.handleInputChange}
                 onBlur={this.handleInputConfirm}
@@ -80,12 +65,12 @@ class TrainerList extends Component {
               />
             )}
             {!this.state.inputVisible && (
-              <Tag className="site-tag-plus" onClick={this.showInput}>
-                + 添加学员
+              <Tag className="trainer-addition-plus" onClick={this.showInput}>
+                + 添加讲师
               </Tag>
             )}
           </div>
-        </div>
+        </main>
       </div>
     );
   }
