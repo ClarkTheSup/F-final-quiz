@@ -30,7 +30,7 @@ class GroupList extends Component {
   fetchGroups = async () => {
     await this.createGroups();
     await this.getGroups();
-    this.props.refreshApp();
+    global.location.reload();
   };
 
   render() {
