@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
+          {/* // TODO Feedback: React-Router的使用不合理 */}
           <Route exact path="/" component={GroupList} />
           <Route exact path="/" component={TrainerList} />
           <Route exact path="/" component={TraineeList} />

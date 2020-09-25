@@ -4,6 +4,7 @@ import Trainer from '../trainerList/trainer/Trainer';
 import './Group.scss';
 
 class Group extends Component {
+  // TODO Feedback: 不要提交注释代码
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -60,13 +61,14 @@ class Group extends Component {
         <header className="header">
           <span className="group-name">{this.props.group.name}</span>
           <div className="trainer-list">
-            {this.props.group.trainerList.map((trainer) => (
+            {/* // TODO Feedback: 字段读取错误，不是trainerList，而是trainers，期望自己检查后再提交 */}
+            {this.props.group.trainers.map((trainer) => (
               <Trainer key={trainer.id} trainerId={trainer.id} trainerName={trainer.name} />
             ))}
           </div>
         </header>
         <div className="main">
-          {this.props.group.traineeList.map((trainee) => (
+          {this.props.group.trainees.map((trainee) => (
             <Trainee key={trainee.id} traineeId={trainee.id} traineeName={trainee.name} />
           ))}
         </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Trainer.scss';
 
+// TODO Feedback: 考虑如何去实现Trainer和Trainee的复用
 class Trainer extends Component {
   render() {
     return (

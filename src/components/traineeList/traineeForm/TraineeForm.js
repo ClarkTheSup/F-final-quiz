@@ -11,10 +11,12 @@ class TraineeForm extends Component {
   };
 
   goBack = () => {
+    // TODO Feedback: 建议用React Router去控制history
     window.history.back();
   };
 
   render() {
+    // TODO Feedback: rules可以抽到单独的方法
     return (
       <Form name="basic" onFinish={this.onFinish}>
         <Form.Item

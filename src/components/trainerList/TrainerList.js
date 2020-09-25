@@ -5,6 +5,7 @@ import './TrainerList.scss';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import Trainer from './trainer/Trainer';
 
+// TODO Feedback: 组件负责了太多事情，本质是组件抽象层次不够
 class TrainerList extends Component {
   constructor(props) {
     super(props);
@@ -61,6 +62,7 @@ class TrainerList extends Component {
     await axios.delete(url);
   };
 
+  // TODO Feedback: 既然已经抽取了Trainer组件，删除逻辑放在组件内不是更合适吗？
   showConfirm = (trainerId, deleteTrainer, getUngroupedTrainers) => {
     Modal.confirm({
       icon: <ExclamationCircleOutlined />,
@@ -76,6 +78,7 @@ class TrainerList extends Component {
     return (
       <div className="trainer-list">
         <header className="header">
+          {/* // TODO Feedback: 命名为什么出现大写 */}
           <span className="traineeList-Navigator-Left">讲师列表</span>
         </header>
         <main className="main">
@@ -89,6 +92,7 @@ class TrainerList extends Component {
               }
             />
           ))}
+          {/* // TODO Feedback:建议添加讲师的逻辑抽到单独的组件中，inputVisible等状态和操作就可以放在组件里单独处理 */}
           <div className="trainer-addition">
             {this.state.inputVisible && (
               <Input
